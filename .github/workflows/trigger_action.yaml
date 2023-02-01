@@ -14,13 +14,15 @@ env:
 
 jobs:
   dispatchEvent:
+    permissions:
+      contents: 'write'
     runs-on: ubuntu-latest
     steps:
     - name: Repository Dispatch
       if: inputs.release_candidate == false
       uses: peter-evans/repository-dispatch@v2
       with:
-        token: ${{ secrets.EVENT_API }}
+        token: ${{ secrets.GITHUB_TOKEN }}
         repository: phoban01/test-actions
         event-type: ocm-cli-release
         client-payload: '{"tag": "${{ env.RELEASE_VERSION }}"}'
