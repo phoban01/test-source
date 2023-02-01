@@ -21,6 +21,6 @@ jobs:
       uses: peter-evans/repository-dispatch@v2
       with:
         token: ${{ secrets.EVENT_API }}
-        repository: open-component-model/ocm-website
+        repository: phoban01/test-actions
         event-type: ocm-cli-release
         client-payload: '{"tag": "${{ env.RELEASE_VERSION }}"}'
