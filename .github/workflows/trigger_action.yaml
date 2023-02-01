@@ -1,0 +1,15 @@
+name: Repository Dispatch
+on:
+  workflow_dispatch:
+
+jobs:
+  dispatchEvent:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Repository Dispatch
+      uses: peter-evans/repository-dispatch@v2
+      with:
+        token: ${{ secrets.EVENT_API }}
+        repository: phoban01/test-actions
+        event-type: ocm-cli-release
+        client-payload: '{"tag": "v1.0.0"}'
