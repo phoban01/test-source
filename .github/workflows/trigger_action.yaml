@@ -1,15 +1,26 @@
 name: Repository Dispatch
+
 on:
   workflow_dispatch:
+    inputs:
+      release_candidate:
+        type: boolean
+        description: "Release Candidate"
+        required: false
+        default: false
+
+env:
+  RELEASE_VERSION: v23.3.23
 
 jobs:
   dispatchEvent:
     runs-on: ubuntu-latest
     steps:
     - name: Repository Dispatch
+      if: inputs.release_candidate == 'false'
       uses: peter-evans/repository-dispatch@v2
       with:
         token: ${{ secrets.EVENT_API }}
-        repository: phoban01/test-actions
+        repository: open-component-model/ocm-website
         event-type: ocm-cli-release
-        client-payload: '{"tag": "v1.0.0"}'
+        client-payload: '{"tag": "${{ env.RELEASE_VERSION }}"}'
