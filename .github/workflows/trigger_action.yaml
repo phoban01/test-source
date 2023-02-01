@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Repository Dispatch
-      if: inputs.release_candidate == 'false'
+      if: inputs.release_candidate == false
       uses: peter-evans/repository-dispatch@v2
       with:
         token: ${{ secrets.EVENT_API }}
